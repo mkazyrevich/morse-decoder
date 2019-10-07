@@ -79,7 +79,7 @@ let decode = function (expr) {
             }
             else {
                 if (key == item) {
-                words += MORSE_TABLE[key];
+                    words += MORSE_TABLE[key];
                 }
         
             }
