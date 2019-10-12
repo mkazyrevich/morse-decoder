@@ -40,9 +40,11 @@ const MORSE_TABLE = {
 let decode = function (expr) {
     let arr = [];
     let words = '';
+    
     for (let i=0; i<=(expr.length-10); i=i+10) {
         arr.push(expr.substr(i, 10));
     }
+    
     arr = arr.map(function(item){
         for (let k=0; k<item.length-1; k=k+2) {
             if (item.substr(k, 1)!='0') {
@@ -55,22 +57,23 @@ let decode = function (expr) {
     })
     
     arr = arr.map(function(item){
-        let arrElem = [];
+        let arrForSymbol = [];
         for (let k=0; k<=(item.length-2); k=k+2) {
             if (item.substr(k, 2)=='10') {
-                arrElem.push('.');
+                arrForSymbol.push('.');
             } 
             else {
                 if (item.substr(k, 2)=='11') {
-                    arrElem.push('-');
+                    arrForSymbol.push('-');
                 }
                 else {
-                    arrElem.push(item.substr(k, 2));
+                    arrForSymbol.push(item.substr(k, 2));
                 }
             }
         }
-        return arrElem.join('');
+        return arrForSymbol.join('');
     })
+    
     for (let item of arr) {
         for (let key in MORSE_TABLE) {
             if (item == "**********") {
@@ -81,10 +84,10 @@ let decode = function (expr) {
                 if (key == item) {
                     words += MORSE_TABLE[key];
                 }
-        
             }
         }
     }
+
     return words;
 }
 
